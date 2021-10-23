@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/inzynierka/app/src/main/res/layout/activity_capture.xml" value="0.23385416666666667" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_choice.xml" value="0.21875" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_login.xml" value="0.10638297872340426" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/inzynierka/app/src/main/res/layout/activity_sorting_scan.xml" value="0.21145833333333333" />
       </map>
     </option>
   </component>
