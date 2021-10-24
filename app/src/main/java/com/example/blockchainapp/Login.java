@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity {
         Info = (TextView) findViewById(R.id.tvInfo);
         Login = (Button) findViewById(R.id.btnLogin);
 
-        Info.setText("Number of attempts remaining: " + String.valueOf(counter));
+        Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         }else{
             counter--;
 
-            Info.setText("Number of attempts remaining: " + String.valueOf(counter));
+            Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
 
             if(counter == 0){
                 Login.setEnabled(false);

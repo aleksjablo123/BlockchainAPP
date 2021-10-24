@@ -53,7 +53,7 @@ public class SortingScan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(SortingScan.this);
-                intentIntegrator.setPrompt("For flash use volume up key");
+                intentIntegrator.setPrompt("W celu włączenia latarki wciśnij przycisk zwiększania głośności");
                 intentIntegrator.setBeepEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
@@ -82,7 +82,7 @@ public class SortingScan extends AppCompatActivity {
             ShowNextPointOption();
 
         }else{
-            Toast.makeText(getApplicationContext(), "You did not scan anything", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ponów próbę skanowania", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -11,7 +11,7 @@
         android:layout_width="284dp"
         android:layout_height="67dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Login"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="283dp"
         android:layout_height="61dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Hasło"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="280dp"
         android:layout_height="63dp"
-        android:text="Login"
+        android:text="Zaloguj"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="0.517"
-        tools:text="Number of incorrect attempts:"
+        tools:text="Liczba dostępnych prób logowania: "
         android:textSize="15dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
