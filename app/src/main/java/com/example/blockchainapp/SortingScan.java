@@ -69,8 +69,8 @@ public class SortingScan extends AppCompatActivity {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(intentResult.getContents() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(SortingScan.this);
-            builder.setTitle("Result");
-            builder.setMessage("Zeskanowany kod to: " + intentResult.getContents());
+            builder.setTitle("Zeskanowany kod to:");
+            builder.setMessage(intentResult.getContents());
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
