@@ -8,25 +8,42 @@
 
     <Button
         android:id="@+id/btnSorting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="268dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="8dp"
         android:text="Sortownia"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/btnCarrier"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
+        app:layout_constraintTop_toBottomOf="@+id/tvChoice"
+        app:layout_constraintVertical_bias="0.352" />
 
     <Button
         android:id="@+id/btnCarrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="271dp"
+        android:layout_height="146dp"
+        android:layout_marginBottom="220dp"
         android:text="Kurier"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="Wybierz rolę:"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSorting"
-        app:layout_constraintVertical_bias="0.299" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
