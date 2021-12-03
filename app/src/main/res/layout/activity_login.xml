@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.254" />
 
     <TextView
         android:id="@+id/tvInfo"
@@ -60,5 +60,18 @@
         app:layout_constraintVertical_bias="0.517"
         tools:text="Liczba dostępnych prób logowania: "
         android:textSize="15dp"/>
+
+    <Switch
+        android:id="@+id/swBlue"
+        android:layout_width="143dp"
+        android:layout_height="37dp"
+        android:text="Czerwona organizacja"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintVertical_bias="0.433" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
