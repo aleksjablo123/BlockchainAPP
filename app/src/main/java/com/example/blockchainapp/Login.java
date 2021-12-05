@@ -20,8 +20,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +42,10 @@ public class Login extends AppCompatActivity {
     private TextView Test;
     private int counter = 5;
 
-    //@TODO pokazanie że to zmienna globalna
-    public String Organization = "Red";
+    public static String Organization = "Red";
+    public static String Authorization;
+    public static String BlueURL="http://192.168.0.6:8080";
+    public static String RedURL="http://192.168.0.6:8081";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,73 +80,56 @@ public class Login extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(Name.getText().toString(), Password.getText().toString());
+                if(Organization=="Blue"){
+                    validate(Name.getText().toString(), Password.getText().toString(), BlueURL);
+                }
+                else{
+                    validate(Name.getText().toString(), Password.getText().toString(), RedURL);
+                }
+
             }
         });
     }
 
-    private void validate (String userName, String userPassword){
-
-        if(Organization=="Blue"){
-            //logowanie organizacji niebieskiej
+    private void validate (String userName, String userPassword, String url){
 
             RequestQueue queue = Volley.newRequestQueue(this);
-            String url = "http://192.168.0.6:8080/user";
 
             // Request a string response from the provided URL.
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
+            JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url+"/user", null,
+                    new Response.Listener<JSONObject>() {
                         @Override
-                        public void onResponse(String response) {
-                            // Display the first 500 characters of the response string.
-                            //Test.setText("Response is: "+ response.substring(0,500));
-//                            success = true;
-//                            if(success){
-                            Log.i("Response1", response);
-                                Intent intent = new Intent(Login.this, Choice.class);
-                                startActivity(intent);
-//                            }else{
-//                                counter--;
-//
-//                                Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
-//
-//                                if(counter == 0){
-//                                    Login.setEnabled(false);
-//                                }
-//                            }
-                            //custom_response = response.substring(0,500);
+                        public void onResponse(JSONObject response) {
+                            JSONObject jsonOb = response;
+                            Intent intent = new Intent(Login.this, Choice.class);
+                            startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    //@TODO in future - sprawdzenie czy błąd logowania jest po stronie serwera czy ze względu na błędne dane
-                    Test.setText(error.toString());
                     if (error instanceof AuthFailureError) {
                         counter--;
-
+                        Test.setTextColor(Color.RED);
+                        Test.setText("Błędny login lub hasło");
                         Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
 
                         if (counter == 0) {
                             Login.setEnabled(false);
                         }
                     } else {
-                        //bład serwera spórobuj później
-                        //możliwe do wykorzystaina error instanceof ServerError i NetworkError
+                        Test.setText("Błąd serwera, spróbuj zalogować się później");
+                        Test.setTextColor(Color.RED);
                     }
                 }
             }){
 
-                //This is for Headers If You Needed
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-
-//                    params.put("token", ACCESS_TOKEN);
                     String credentials = userName + ":" + userPassword;
-                    // "user0@blue.parcels.local:password"
+                    Authorization = credentials;
                     String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
                     params.put("Authorization", "Basic " + base64EncodedCredentials);
-                    //Test.setText("No");
                     return params;
                 }
 
@@ -147,36 +137,14 @@ public class Login extends AppCompatActivity {
 //                @Override
 //                protected Map<String, String> getParams() {
 //                    Map<String, String> params = new HashMap<String, String>();
-//                    params.put("User", userName);
+//                    params.put("id", f59d9eda-423d-40f7-ac29-2c7821723003);
 //                    params.put("Pass", userPassword);
 //                    return params;
 //                }
             };
 
+            queue.add(JsonObjectRequest);
 
-            // Add the request to the RequestQueue.
-            queue.add(stringRequest);
-            //SystemClock.sleep(3000);
-        //(userName.equals("")) && (userPassword.equals(""))
-
-
-        }
-        else{
-            int port = 8081;
-            String url = "192.168.0.6/user";
-            if((userName.equals("")) && (userPassword.equals(""))){
-                Intent intent = new Intent(Login.this, Choice.class);
-                startActivity(intent);
-            }else{
-                counter--;
-
-                Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
-
-                if(counter == 0){
-                    Login.setEnabled(false);
-                }
-            }
-        }
 
     }
 

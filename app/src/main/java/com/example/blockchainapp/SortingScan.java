@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -30,7 +32,9 @@ public class SortingScan extends AppCompatActivity {
     private TextView Choose;
     private Button Save;
     private Spinner Spinner;
+    private ConstraintLayout mConstraintLayout;
 
+    private String Sorting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,13 @@ public class SortingScan extends AppCompatActivity {
         Save.setVisibility(View.INVISIBLE);
         Spinner.setVisibility(View.INVISIBLE);
 
+        mConstraintLayout = (ConstraintLayout)findViewById(R.id.constraintLayoutSortingScan);
+        if(Login.Organization=="Blue"){
+            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
+        }
+        else{
+            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+        }
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,9 +102,16 @@ public class SortingScan extends AppCompatActivity {
         Choose.setVisibility(View.VISIBLE);
         Save.setVisibility(View.VISIBLE);
         Spinner.setVisibility(View.VISIBLE);
+        Sorting = Spinner.getSelectedItem().toString();
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+
+
+
                 //@TODO
                 //wysyłaj dane do blockchain
                 Intent intent = new Intent(SortingScan.this, Choice.class);
