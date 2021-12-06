@@ -45,7 +45,7 @@ public class SortingScan extends AppCompatActivity {
     private TextView Choose;
     private Button Save;
     private Spinner Spinner;
-    private ConstraintLayout mConstraintLayout;
+    private TextView OrganizationShow;
 
     private String Sorting;
 
@@ -59,6 +59,7 @@ public class SortingScan extends AppCompatActivity {
         Choose = findViewById(R.id.tvChoose);
         Save = findViewById(R.id.btnSave);
         Spinner = findViewById(R.id.sprChooseNextStep);
+        OrganizationShow = findViewById(R.id.tvOrganizationShow);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, elements);
         Spinner.setAdapter(adapter);
         UUIDv4.setText("");
@@ -66,12 +67,13 @@ public class SortingScan extends AppCompatActivity {
         Save.setVisibility(View.INVISIBLE);
         Spinner.setVisibility(View.INVISIBLE);
 
-        mConstraintLayout = (ConstraintLayout)findViewById(R.id.constraintLayoutSortingScan);
         if(Login.Organization=="Blue"){
-            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
+            OrganizationShow.setText("Niebieska organizacja!");
+            OrganizationShow.setTextColor(ContextCompat.getColor(this, R.color.blue));
         }
         else{
-            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+            OrganizationShow.setText("Czerwona organizacja!");
+            OrganizationShow.setTextColor(ContextCompat.getColor(this, R.color.red));
         }
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override

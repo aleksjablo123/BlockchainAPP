@@ -43,18 +43,20 @@ public class CarrierScan extends AppCompatActivity {
 
     private Button Scan;
     private TextView UUIDv4;
+    private TextView UUIDv4Read;
     private Button Save;
     private Switch Delivered;
     private Switch Picked;
     private TableLayout Data;
     public boolean PickedBoolean;
     public boolean DeliveredBoolean;
-    private ConstraintLayout mConstraintLayout;
+    private TextView OrganizationShow1;
 
     private TextView OrganizationRead;
     private TextView StatusRead;
     private TextView KeeperRead;
     private TextView KeeperOrganizationRead;
+    private TextView KeeperLabelRead;
     private TextView Pickup_addressRead;
     private TextView Delivery_addressRead;
     private TextView WeightRead;
@@ -67,17 +69,18 @@ public class CarrierScan extends AppCompatActivity {
         setContentView(R.layout.activity_carrier_scan);
 
         Scan = findViewById(R.id.btScan);
-        UUIDv4 = findViewById(R.id.tvUuidv4);
+        UUIDv4Read = findViewById(R.id.tvUuidv4);
+        UUIDv4Read = findViewById(R.id.tvUuidv4Read);
         Save = findViewById(R.id.btnSave);
         Data = findViewById(R.id.tlData);
+        OrganizationShow1 = findViewById(R.id.tvOrganizationShow1);
         Delivered = findViewById(R.id.swDelivered);
         Delivered.setVisibility(View.INVISIBLE);
         Picked = findViewById(R.id.swPicked);
         Picked.setVisibility(View.INVISIBLE);
         Data.setVisibility(View.INVISIBLE);
-        UUIDv4.setText("");
+        UUIDv4Read.setText("");
         Save.setVisibility(View.INVISIBLE);
-        mConstraintLayout = (ConstraintLayout)findViewById(R.id.constraintLayoutCarrierScan);
 
         //inicjalizacja wierszy z tablicy
         OrganizationRead = findViewById(R.id.tvOrganizationRead);
@@ -90,14 +93,17 @@ public class CarrierScan extends AppCompatActivity {
         HeightRead = findViewById(R.id.tvHeightRead);
         WidthRead = findViewById(R.id.tvWidthRead);
         LengthRead = findViewById(R.id.tvLengthRead);
+        KeeperLabelRead = findViewById(R.id.tvKeeperLabelRead);
 
+        if(Login.Organization=="Blue"){
+            OrganizationShow1.setText("Niebieska organizacja!");
+            OrganizationShow1.setTextColor(ContextCompat.getColor(this, R.color.blue));
+        }
+        else{
+            OrganizationShow1.setText("Czerwona organizacja!");
+            OrganizationShow1.setTextColor(ContextCompat.getColor(this, R.color.red));
+        }
 
-//        if(Login.Organization=="Blue"){
-//            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
-//        }
-//        else{
-//            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
-//        }
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,9 +133,9 @@ public class CarrierScan extends AppCompatActivity {
                 }
             });
             builder.show();
-            UUIDv4.setText(intentResult.getContents());
+            UUIDv4Read.setText(intentResult.getContents());
             ShowNextPointOption();
-            ReadFromBlockchain(UUIDv4.getText().toString());
+            ReadFromBlockchain(UUIDv4Read.getText().toString());
 
         }else{
             Toast.makeText(getApplicationContext(), "Ponów próbę skanowania", Toast.LENGTH_SHORT).show();
@@ -185,9 +191,9 @@ public class CarrierScan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(PickedBoolean){
-                    SendToBlockchain("Picked", UUIDv4.getText().toString());
+                    SendToBlockchain("Picked", UUIDv4Read.getText().toString());
                 }else{
-                    SendToBlockchain("Delivered", UUIDv4.getText().toString());
+                    SendToBlockchain("Delivered", UUIDv4Read.getText().toString());
                 }
 
             }
@@ -222,7 +228,8 @@ public class CarrierScan extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                UUIDv4.setText(error.toString());
+                Intent intent = new Intent(CarrierScan.this, Choice.class);
+                startActivity(intent);
 //                Intent intent = new Intent(CarrierScan.this, Choice.class);
 //                startActivity(intent);
             }
@@ -269,26 +276,84 @@ public class CarrierScan extends AppCompatActivity {
                         JSONObject jsonOb = response;
                         //parsowanie danych
                         try {
+                            String empty="---";
                             String Organization = jsonOb.getString("organization");
-                            OrganizationRead.setText(Organization);
+                            if(Organization.isEmpty()){
+                                OrganizationRead.setText(empty);
+                            }
+                            else{
+                                OrganizationRead.setText(Organization);
+                            }
                             String Status = jsonOb.getString("status");
-                            StatusRead.setText(Status);
+                            if(Status.isEmpty()){
+                                StatusRead.setText(empty);
+                            }
+                            else{
+                                StatusRead.setText(Status);
+                            }
                             String Keeper = jsonOb.getString("keeper");
-                            KeeperRead.setText(Keeper);
+                            if(Keeper.isEmpty()){
+                                KeeperRead.setText(empty);
+                            }
+                            else{
+                                KeeperRead.setText(Keeper);
+                            }
                             String KeeperOrganization = jsonOb.getString("keeper_organization");
-                            KeeperOrganizationRead.setText(KeeperOrganization);
+                            if(KeeperOrganization.isEmpty()){
+                                KeeperOrganizationRead.setText(empty);
+                            }
+                            else{
+                                KeeperOrganizationRead.setText(KeeperOrganization);
+                            }
+                            String KeeperLabel = jsonOb.getString("keeper_label");
+                            if(KeeperLabel.isEmpty()){
+                                KeeperLabelRead.setText(empty);
+                            }
+                            else{
+                                KeeperLabelRead.setText(KeeperLabel);
+                            }
                             String Pickup_address = jsonOb.getString("pickup_address");
-                            Pickup_addressRead.setText(Pickup_address);
+                            if(Pickup_address.isEmpty()){
+                                Pickup_addressRead.setText(empty);
+                            }
+                            else{
+                                Pickup_addressRead.setText(Pickup_address);
+                            }
                             String Delivery_address = jsonOb.getString("delivery_address");
-                            Delivery_addressRead.setText(Delivery_address);
+                            if(Delivery_address.isEmpty()){
+                                Delivery_addressRead.setText(empty);
+                            }
+                            else{
+                                Delivery_addressRead.setText(Delivery_address);
+                            }
                             String Weight = jsonOb.getString("weight");
-                            WeightRead.setText(Weight);
+                            if(Weight.isEmpty()){
+                                WeightRead.setText(empty);
+                            }
+                            else{
+                                WeightRead.setText(Weight);
+                            }
                             String Height = jsonOb.getString("height");
-                            HeightRead.setText(Height);
+                            if(Height.isEmpty()){
+                                HeightRead.setText(empty);
+                            }
+                            else{
+                                HeightRead.setText(Height);
+                            }
                             String Width = jsonOb.getString("width");
-                            WidthRead.setText(Width);
+                            if(Width.isEmpty()){
+                                WidthRead.setText(empty);
+                            }
+                            else{
+                                WidthRead.setText(Width);
+                            }
                             String Length = jsonOb.getString("length");
-                            LengthRead.setText(Length);
+                            if(Length.isEmpty()){
+                                LengthRead.setText(empty);
+                            }
+                            else{
+                                LengthRead.setText(Length);
+                            }
                         }
                         catch (Exception w){
 
@@ -297,7 +362,7 @@ public class CarrierScan extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Intent intent = new Intent(CarrierScan.this, Login.class);
+                Intent intent = new Intent(CarrierScan.this, Choice.class);
                 startActivity(intent);
             }
         }){

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Choice"
     android:id="@+id/constraintLayout"
-    android:background="@drawable/background">
+    android:background="@drawable/background_choice">
 
 <!--    <Button-->
 <!--        android:id="@+id/btnSorting"-->
@@ -70,6 +70,7 @@
             android:id="@+id/btnSorting"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:paddingTop="10dp"
             android:layout_row="0"
             android:layout_rowWeight="1"
             android:layout_column="0"
@@ -82,6 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
+                android:paddingTop="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -91,12 +93,13 @@
                     android:adjustViewBounds="true"
                     android:maxWidth="95dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/automatic" />
+                    android:src="@drawable/sorting_logo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sortownia"
+
                     android:textAlignment="center"
                     android:textSize="28dp"
                     android:textStyle="bold" />
@@ -112,6 +115,7 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:paddingTop="10dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true">
@@ -121,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
+                android:paddingTop="10dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -129,7 +134,7 @@
                     android:adjustViewBounds="true"
                     android:maxWidth="95dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/deliverycourier" />
+                    android:src="@drawable/carrier_logo" />
 
                 <TextView
                     android:layout_width="wrap_content"

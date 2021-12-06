@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -38,11 +39,11 @@ public class Login extends AppCompatActivity {
     private EditText Password;
     private TextView Info;
     private Button Login;
-    private Switch Blue;
     private TextView Test;
     private int counter = 5;
-
-    public static String Organization = "Red";
+    private RadioButton BlueRadioButton;
+    private RadioButton RedRadioButton;
+    public static String Organization;
     public static String Authorization;
     public static String BlueURL="http://192.168.0.6:8080";
     public static String RedURL="http://192.168.0.6:8081";
@@ -56,35 +57,22 @@ public class Login extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.etPassword);
         Info = (TextView) findViewById(R.id.tvInfo);
         Login = (Button) findViewById(R.id.btnLogin);
-        Blue = (Switch) findViewById(R.id.swBlue);
         Test = (TextView) findViewById(R.id.tvTest);
+        BlueRadioButton = (RadioButton) findViewById(R.id.rbBlue);
+        RedRadioButton = (RadioButton) findViewById(R.id.rbRed);
+
         Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
-
-        Blue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    Blue.setText("Organizacja niebieska");
-                    Blue.setTextColor(Color.BLUE);
-                    Organization="Blue";
-                }
-                else{
-                    Blue.setText("Organizacja czerwona");
-                    Blue.setTextColor(Color.RED);
-                    Organization="Red";
-                }
-            }
-        });
-
-
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Organization=="Blue"){
-                    validate(Name.getText().toString(), Password.getText().toString(), BlueURL);
-                }
-                else{
+                if(RedRadioButton.isChecked()){
+                    Organization="Red";
                     validate(Name.getText().toString(), Password.getText().toString(), RedURL);
+                }
+                else if(BlueRadioButton.isChecked()){
+                    Organization="Blue";
+                    validate(Name.getText().toString(), Password.getText().toString(), BlueURL);
                 }
 
             }

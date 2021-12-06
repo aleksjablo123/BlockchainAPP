@@ -4,15 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/inzynierka/app/src/main/res/drawable-v24/edittext_default.xml" value="0.39692307692307693" />
+        <entry key="..\:/inzynierka/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.28541666666666665" />
         <entry key="..\:/inzynierka/app/src/main/res/drawable/cursor.xml" value="0.39692307692307693" />
         <entry key="..\:/inzynierka/app/src/main/res/drawable/edittext_bottom_border.xml" value="0.23489583333333333" />
         <entry key="..\:/inzynierka/app/src/main/res/drawable/edittext_modified_states.xml" value="0.23489583333333333" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_capture.xml" value="0.23385416666666667" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_carrier_scan.xml" value="0.33" />
-        <entry key="..\:/inzynierka/app/src/main/res/layout/activity_choice.xml" value="0.33" />
+        <entry key="..\:/inzynierka/app/src/main/res/layout/activity_choice.xml" value="0.1" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_login.xml" value="0.23170731707317074" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/inzynierka/app/src/main/res/layout/activity_sorting_scan.xml" value="0.33" />
+        <entry key="..\:/inzynierka/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.28541666666666665" />
+        <entry key="..\:/inzynierka/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.28541666666666665" />
       </map>
     </option>
   </component>

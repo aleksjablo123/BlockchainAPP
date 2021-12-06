@@ -4,297 +4,457 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_carrier"
     tools:context=".CarrierScan"
     android:id="@+id/constraintLayoutCarrierScan">
 
 
     <Switch
         android:id="@+id/swPicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_width="323dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="40dp"
         android:minHeight="48dp"
+        android:paddingTop="40dp"
         android:text="Czy paczka została odebrana? "
         android:textSize="20dp"
+        android:theme="@style/Switch"
         app:layout_constraintBottom_toTopOf="@+id/swDelivered"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlData"
+        app:layout_constraintTop_toBottomOf="@+id/svData"
         app:layout_constraintVertical_bias="1.0" />
+
+
+    <!--    <TextView-->
+<!--        android:id="@+id/tvUuidv4"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Robocze UUIDv4"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btScan"-->
+<!--        app:layout_constraintVertical_bias="0.017" />-->
 
     <Button
         android:id="@+id/btScan"
         android:layout_width="269dp"
         android:layout_height="83dp"
+        android:backgroundTint="@color/blue"
         android:text="Skanuj"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.369" />
 
-
-    <TextView
-        android:id="@+id/tvUuidv4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Robocze UUIDv4"
-        android:textSize="20dp"
+    <ScrollView
+        android:id="@+id/svData"
+        android:layout_width="350dp"
+        android:layout_height="330dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btScan"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintVertical_bias="0.023">
 
-    <TableLayout
-        android:id="@+id/tlData"
-        android:layout_width="339dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUuidv4">
-
-        <TableRow
+        <TableLayout
+            android:id="@+id/tlData"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvOrganization"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Organizacja: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvOrganizationRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Status: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvStatusRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvKeeper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Odpowiedzialność: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvKeeperRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvKeeperOrganization"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Odpowiedzialna firma: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvKeeperOrganizationRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvPickup_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Adres odbioru: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvPickup_addressRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvDelivery_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Adres dostarczenia: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvDelivery_addressRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvWeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Waga: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvWeightRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvHeight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Wysokość: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvHeightRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvWidth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Szerokość: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvWidthRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tvLength"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-                android:text="Długość: "
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvLengthRead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="150dp"
-                android:text=" "
-                android:textSize="20dp" />
-        </TableRow>
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
 
-    </TableLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvUuidv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Identyfikator: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvUuidv4Read"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvOrganization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Organizacja: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvOrganizationRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Status: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvStatusRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvKeeper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Opiekun: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvKeeperRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvKeeperOrganization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Organizacja opiekuna: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvKeeperOrganizationRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvKeeperLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Etykieta opiekuna: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvKeeperLabelRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvPickup_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Adres odbioru: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvPickup_addressRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDelivery_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Adres dostarczenia: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvDelivery_addressRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Waga: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvWeightRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Wysokość: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvHeightRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvWidth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Szerokość: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvWidthRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="400dp"
+                    android:text="Długość: "
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvLengthRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:width="400dp"
+                    android:paddingBottom="10dp"
+                    android:text=" "
+                    android:textColor="@color/purple"
+                    android:textSize="24dp" />
+
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
 
     <Switch
         android:id="@+id/swDelivered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="20dp"
         android:minHeight="48dp"
         android:text="Czy paczka została dostarczona? "
         android:textSize="20dp"
+        android:theme="@style/Switch"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlData"
+        app:layout_constraintTop_toBottomOf="@+id/svData"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -303,12 +463,29 @@
         android:layout_height="91dp"
         android:text="Zapisz"
         android:textSize="30dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/swDelivered"
         app:layout_constraintVertical_bias="0.63" />
+
+    <TextView
+        android:id="@+id/tvOrganizationShow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineHeight="25dp"
+        android:text=" "
+        android:textColor="@color/blue"
+        android:textSize="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/btScan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.967" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

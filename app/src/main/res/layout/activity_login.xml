@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pattern"
     tools:context=".Login">
 
 
@@ -148,31 +149,30 @@
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintVertical_bias="0.562" />
 
-    <Switch
-        android:id="@+id/swBlue"
-        android:layout_width="143dp"
-        android:layout_height="37dp"
-        android:text="Czerwona organizacja"
-        android:textColor="#FF0000"
+    <Button
+        android:id="@+id/btFollow"
+        android:layout_width="197dp"
+        android:layout_height="54dp"
+        android:backgroundTint="@color/blue"
+        android:text="Śledź paczkę"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
-    <Button
-        android:id="@+id/btFollow"
-        android:layout_width="191dp"
-        android:layout_height="48dp"
-        android:backgroundTint="@color/blue"
-        android:text="Śledź paczkę"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="322dp"
+        android:layout_height="144dp"
         app:layout_constraintBottom_toTopOf="@+id/tvTest"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintVertical_bias="0.7"
+        app:srcCompat="@drawable/logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
