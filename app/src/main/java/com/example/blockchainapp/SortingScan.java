@@ -3,6 +3,7 @@ package com.example.blockchainapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,8 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SortingScan extends AppCompatActivity {
@@ -106,18 +119,66 @@ public class SortingScan extends AppCompatActivity {
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-
-
-                //@TODO
-                //wysyłaj dane do blockchain
+                SendToBlockchain(Sorting,UUIDv4.getText().toString());
                 Intent intent = new Intent(SortingScan.this, Choice.class);
                 startActivity(intent);
             }
         });
+    }
+
+
+    protected void SendToBlockchain(String Keeper, String Id){
+        String url;
+        if(Login.Organization=="Blue"){
+            url = Login.BlueURL;
+        }
+        else{
+            url = Login.RedURL;
+        }
+        //obsługa keepera
+        url = url + "/parcel/keeper?id=" + Id;
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        // Request a string response from the provided URL.
+        JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        JSONObject jsonOb = response;
+                        //dobry kod
+                        Intent intent = new Intent(SortingScan.this, Choice.class);
+                        startActivity(intent);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Intent intent = new Intent(SortingScan.this, Login.class);
+                startActivity(intent);
+            }
+        }){
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                String base64EncodedCredentials = Base64.encodeToString(Login.Authorization.getBytes(), Base64.NO_WRAP);
+                params.put("Authorization", "Basic " + base64EncodedCredentials);
+                return params;
+            }
+
+            //Pass Your Parameters here
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("keeper", Keeper);
+                    //params.put("Pass", userPassword);
+                    return params;
+                }
+        };
+
+        queue.add(JsonObjectRequest);
+
+
     }
 
 

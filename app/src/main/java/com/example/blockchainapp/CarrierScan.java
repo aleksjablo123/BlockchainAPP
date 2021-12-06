@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -205,7 +206,6 @@ public class CarrierScan extends AppCompatActivity {
         else if(status == "Delivered"){
             url = url + "/parcel/deliver?id=" + Id;
         }
-
         RequestQueue queue = Volley.newRequestQueue(this);
 
         // Request a string response from the provided URL.
@@ -215,14 +215,15 @@ public class CarrierScan extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         JSONObject jsonOb = response;
                         //dobry kod
-                        Intent intent = new Intent(CarrierScan.this, Choice.class);
+                        Intent intent = new Intent(CarrierScan.this, Login.class);
                         startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Intent intent = new Intent(CarrierScan.this, Login.class);
-                startActivity(intent);
+                UUIDv4.setText(error.toString());
+//                Intent intent = new Intent(CarrierScan.this, Choice.class);
+//                startActivity(intent);
             }
         }){
 
@@ -245,7 +246,6 @@ public class CarrierScan extends AppCompatActivity {
         };
 
         queue.add(JsonObjectRequest);
-
 
     }
     protected void ReadFromBlockchain(String Id){
