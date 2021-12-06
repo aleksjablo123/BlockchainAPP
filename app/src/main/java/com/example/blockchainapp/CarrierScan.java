@@ -28,6 +28,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -91,12 +92,12 @@ public class CarrierScan extends AppCompatActivity {
         LengthRead = findViewById(R.id.tvLengthRead);
 
 
-        if(Login.Organization=="Blue"){
-            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
-        }
-        else{
-            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
-        }
+//        if(Login.Organization=="Blue"){
+//            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
+//        }
+//        else{
+//            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+//        }
         Scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,13 +210,13 @@ public class CarrierScan extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         // Request a string response from the provided URL.
-        JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest JsonObjectRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        JSONObject jsonOb = response;
+                    public void onResponse(String response) {
+                        //JSONObject jsonOb = response;
                         //dobry kod
-                        Intent intent = new Intent(CarrierScan.this, Login.class);
+                        Intent intent = new Intent(CarrierScan.this, Choice.class);
                         startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
@@ -239,7 +240,7 @@ public class CarrierScan extends AppCompatActivity {
 //                @Override
 //                protected Map<String, String> getParams() {
 //                    Map<String, String> params = new HashMap<String, String>();
-//                    params.put("id", "7f0839c8-1725-4d81-977b-cd291ac834f4");
+//                    params.put("id", Id);
 //                    //params.put("Pass", userPassword);
 //                    return params;
 //                }

@@ -1,6 +1,7 @@
 package com.example.blockchainapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
@@ -19,17 +20,17 @@ import java.awt.font.TextAttribute;
 
 public class Choice extends AppCompatActivity implements View.OnClickListener{
 
-    private Button Sorting;
-    private Button Carrier;
-    private ConstraintLayout mConstraintLayout;
+    private CardView Sorting;
+    private CardView Carrier;
+    private TextView Banner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
-        Sorting = (Button) findViewById(R.id.btnSorting);
-        Carrier = (Button) findViewById(R.id.btnCarrier);
-        mConstraintLayout = (ConstraintLayout)findViewById(R.id.constraintLayout);
+        Sorting = (CardView) findViewById(R.id.btnSorting);
+        Carrier = (CardView) findViewById(R.id.btnCarrier);
+        Banner = (TextView) findViewById(R.id.tvBanner);
 
         if(Login.Authorization.equals("user1@blue.parcels.local:password")){
             Carrier.setEnabled(false);
@@ -49,10 +50,12 @@ public class Choice extends AppCompatActivity implements View.OnClickListener{
         Carrier.setOnClickListener(this);
 
         if(Login.Organization=="Blue"){
-            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.blue));
+            Banner.setText("Witaj w niebieskiej organizacji!");
+            Banner.setTextColor(ContextCompat.getColor(this, R.color.blue));
         }
         else{
-            mConstraintLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+            Banner.setText("Witaj w czerwonej organizacji!");
+            Banner.setTextColor(ContextCompat.getColor(this, R.color.red));
         }
 
 
