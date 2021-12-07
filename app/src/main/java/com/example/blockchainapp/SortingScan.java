@@ -128,13 +128,13 @@ public class SortingScan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Sorting = Spinner.getSelectedItem().toString();
-                SendToBlockchain(Sorting,UUIDv4.getText().toString());
+                SendToBlockchain(UUIDv4.getText().toString());
             }
         });
     }
 
 
-    protected void SendToBlockchain(String Keeper, String Id){
+    protected void SendToBlockchain(String Id){
         String url;
         if(Login.Organization=="Blue"){
             url = Login.BlueURL;
