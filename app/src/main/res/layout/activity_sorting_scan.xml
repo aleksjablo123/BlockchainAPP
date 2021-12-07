@@ -15,61 +15,74 @@ tools:context=".SortingScan"
         android:layout_height="83dp"
         android:text="Skanuj"
         android:textSize="30dp"
+        android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
+        app:layout_constraintVertical_bias="0.404" />
 
     <TextView
         android:id="@+id/tvUuidv4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="331dp"
+        android:layout_height="75dp"
+        android:background="@color/white"
+        android:paddingBottom="10dp"
         android:text="Robocze UUIDv4"
-        android:textSize="20dp"
+        android:textColor="@color/purple"
+        android:textSize="24dp"
+        android:paddingRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btScan"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.161" />
 
     <TextView
         android:id="@+id/tvChoose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wskaż następną sortownię: "
-        android:textSize="25dp"
-        android:textColor="@color/black"
+        android:background="@color/white"
+        android:text="Ustaw lokalizację paczki "
+        android:textColor="@color/grey"
+        android:textSize="24dp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUuidv4"
-        app:layout_constraintVertical_bias="0.121"
-        />
+        app:layout_constraintVertical_bias="0.112" />
 
     <Spinner
         android:id="@+id/sprChooseNextStep"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="317dp"
+        android:layout_height="34dp"
+        android:background="@color/white"
+        android:maxWidth="250dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/purple"
+        android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvChoose" />
+        app:layout_constraintTop_toBottomOf="@+id/tvChoose"
+        app:layout_constraintVertical_bias="0.208" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="216dp"
         android:layout_height="91dp"
+        android:backgroundTint="@color/purple"
+
         android:text="Zapisz"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvChoose"
-        app:layout_constraintVertical_bias="0.63" />
+        app:layout_constraintVertical_bias="0.811" />
 
     <TextView
         android:id="@+id/tvOrganizationShow"
@@ -79,10 +92,28 @@ tools:context=".SortingScan"
         android:text=" "
         android:textColor="@color/blue"
         android:textSize="22dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btScan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
+    <TextView
+        android:id="@+id/tvuidv4label"
+        android:layout_width="327dp"
+        android:layout_height="24dp"
+        android:width="200dp"
+        android:background="@color/white"
+        android:text="Identyfikator: "
+        android:textColor="@color/grey"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvUuidv4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btScan"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

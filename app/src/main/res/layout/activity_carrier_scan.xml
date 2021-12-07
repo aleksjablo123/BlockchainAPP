@@ -8,23 +8,22 @@
     tools:context=".CarrierScan"
     android:id="@+id/constraintLayoutCarrierScan">
 
-
-    <Switch
-        android:id="@+id/swPicked"
-        android:layout_width="323dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="40dp"
-        android:minHeight="48dp"
-        android:paddingTop="40dp"
-        android:text="Czy paczka została odebrana? "
-        android:textSize="20dp"
-        android:theme="@style/Switch"
-        app:layout_constraintBottom_toTopOf="@+id/swDelivered"
+    <TextView
+        android:id="@+id/tvOrganizationShow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineHeight="25dp"
+        android:text=" "
+        android:textColor="@color/blue"
+        android:textSize="22dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btScan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svData"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.967" />
+
 
 
     <!--    <TextView-->
@@ -55,8 +54,11 @@
     <ScrollView
         android:id="@+id/svData"
         android:layout_width="350dp"
-        android:layout_height="330dp"
+        android:layout_height="280dp"
         android:scrollbars="none"
+        android:background="@color/white"
+        android:layout_marginBottom="20dp"
+        android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
@@ -68,7 +70,6 @@
             android:id="@+id/tlData"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="12dp"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -427,9 +428,7 @@
                     android:id="@+id/tvLengthRead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:width="400dp"
-                    android:paddingBottom="10dp"
                     android:text=" "
                     android:textColor="@color/purple"
                     android:textSize="24dp" />
@@ -440,21 +439,56 @@
         </TableLayout>
     </ScrollView>
 
+
+
+
+
     <Switch
-        android:id="@+id/swDelivered"
+        android:id="@+id/swPicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:minHeight="48dp"
-        android:text="Czy paczka została dostarczona? "
+        android:width="350dp"
+        android:text="Czy paczka została odebrana? "
         android:textSize="20dp"
         android:theme="@style/Switch"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/swShipped"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/svData"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Switch
+        android:id="@+id/swShipped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="350dp"
+        android:text="Czy paczka jest dostarczana? "
+        android:textSize="20dp"
+        android:theme="@style/Switch"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/swPicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swDelivered"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <Switch
+        android:id="@+id/swDelivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="350dp"
+        android:text="Czy paczka została dostarczona? "
+        android:textSize="20dp"
+        android:theme="@style/Switch"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swShipped"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -463,29 +497,16 @@
         android:layout_height="91dp"
         android:text="Zapisz"
         android:textSize="30dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/purple"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/swDelivered"
         app:layout_constraintVertical_bias="0.63" />
-
-    <TextView
-        android:id="@+id/tvOrganizationShow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:lineHeight="25dp"
-        android:text=" "
-        android:textColor="@color/blue"
-        android:textSize="22dp"
-        app:layout_constraintBottom_toTopOf="@+id/btScan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.967" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

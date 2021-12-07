@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TableLayout;
@@ -47,11 +48,13 @@ public class CarrierScan extends AppCompatActivity {
     private Button Save;
     private Switch Delivered;
     private Switch Picked;
+    private Switch Shipped;
     private TableLayout Data;
     public boolean PickedBoolean;
     public boolean DeliveredBoolean;
     private TextView OrganizationShow1;
-
+    private ScrollView svData;
+    private String status;
     private TextView OrganizationRead;
     private TextView StatusRead;
     private TextView KeeperRead;
@@ -75,12 +78,16 @@ public class CarrierScan extends AppCompatActivity {
         Data = findViewById(R.id.tlData);
         OrganizationShow1 = findViewById(R.id.tvOrganizationShow1);
         Delivered = findViewById(R.id.swDelivered);
+        Shipped = findViewById(R.id.swShipped);
+        svData = findViewById(R.id.svData);
         Delivered.setVisibility(View.INVISIBLE);
+        Shipped.setVisibility(View.INVISIBLE);
         Picked = findViewById(R.id.swPicked);
         Picked.setVisibility(View.INVISIBLE);
         Data.setVisibility(View.INVISIBLE);
         UUIDv4Read.setText("");
         Save.setVisibility(View.INVISIBLE);
+        svData.setVisibility(View.INVISIBLE);
 
         //inicjalizacja wierszy z tablicy
         OrganizationRead = findViewById(R.id.tvOrganizationRead);
@@ -94,7 +101,7 @@ public class CarrierScan extends AppCompatActivity {
         WidthRead = findViewById(R.id.tvWidthRead);
         LengthRead = findViewById(R.id.tvLengthRead);
         KeeperLabelRead = findViewById(R.id.tvKeeperLabelRead);
-
+        ButtonManipulation(true);
         if(Login.Organization=="Blue"){
             OrganizationShow1.setText("Niebieska organizacja!");
             OrganizationShow1.setTextColor(ContextCompat.getColor(this, R.color.blue));
@@ -149,7 +156,8 @@ public class CarrierScan extends AppCompatActivity {
         Data.setVisibility(View.VISIBLE);
         Delivered.setVisibility(View.VISIBLE);
         Picked.setVisibility(View.VISIBLE);
-
+        Shipped.setVisibility(View.VISIBLE);
+        svData.setVisibility(View.VISIBLE);
 
 
 
@@ -159,13 +167,14 @@ public class CarrierScan extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    Save.setEnabled(true);
-                    DeliveredBoolean = true;
+                    ButtonManipulation(false);
+                    status = "Delivered";
                     Picked.setEnabled(false);
+                    Shipped.setEnabled(false);
                 }else{
-                    Save.setEnabled(false);
-                    DeliveredBoolean = false;
+                    ButtonManipulation(true);
                     Picked.setEnabled(true);
+                    Shipped.setEnabled(true);
                 }
             }
         });
@@ -174,13 +183,31 @@ public class CarrierScan extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    Save.setEnabled(true);
-                    PickedBoolean = true;
+                    ButtonManipulation(false);
+                    status = "Picked";
                     Delivered.setEnabled(false);
+                    Shipped.setEnabled(false);
                 }else{
-                    Save.setEnabled(false);
-                    PickedBoolean = false;
+                    ButtonManipulation(true);
                     Delivered.setEnabled(true);
+                    Shipped.setEnabled(true);
+                }
+            }
+
+        });
+
+        Shipped.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    ButtonManipulation(false);
+                    status = "Shipped";
+                    Delivered.setEnabled(false);
+                    Picked.setEnabled(false);
+                }else{
+                    ButtonManipulation(true);
+                    Delivered.setEnabled(true);
+                    Picked.setEnabled(true);
                 }
             }
 
@@ -190,12 +217,7 @@ public class CarrierScan extends AppCompatActivity {
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(PickedBoolean){
-                    SendToBlockchain("Picked", UUIDv4Read.getText().toString());
-                }else{
-                    SendToBlockchain("Delivered", UUIDv4Read.getText().toString());
-                }
-
+                SendToBlockchain(status, UUIDv4Read.getText().toString());
             }
         });
     }
@@ -213,6 +235,9 @@ public class CarrierScan extends AppCompatActivity {
         else if(status == "Delivered"){
             url = url + "/parcel/deliver?id=" + Id;
         }
+        else if(status == "Shipped"){
+            url = url + "/parcel/ship?id=" + Id;
+        }
         RequestQueue queue = Volley.newRequestQueue(this);
 
         // Request a string response from the provided URL.
@@ -221,13 +246,14 @@ public class CarrierScan extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //JSONObject jsonOb = response;
-                        //dobry kod
+                        Toast.makeText(getApplicationContext(), "Informacje o paczce zostały poprawnie zaktualizowane", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(CarrierScan.this, Choice.class);
                         startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Informacje o paczce nie zostały poprawnie zaktualizowane. Spróbuj ponownie później", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CarrierScan.this, Choice.class);
                 startActivity(intent);
 //                Intent intent = new Intent(CarrierScan.this, Choice.class);
@@ -254,6 +280,20 @@ public class CarrierScan extends AppCompatActivity {
         };
 
         queue.add(JsonObjectRequest);
+
+    }
+
+    protected void ButtonManipulation(boolean block){
+        if(block){
+            Save.setAlpha(.5f);
+            Save.setClickable(false);
+            Save.setEnabled(false);
+        }
+        else{
+            Save.setAlpha(1);
+            Save.setClickable(true);
+            Save.setEnabled(true);
+        }
 
     }
     protected void ReadFromBlockchain(String Id){
@@ -358,10 +398,12 @@ public class CarrierScan extends AppCompatActivity {
                         catch (Exception w){
 
                         }
+                        Toast.makeText(getApplicationContext(), "Informacje o paczce zostały poprawnie wyświetlone", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Nie można odczytać informacji o paczce. Spróbuj ponownie później", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CarrierScan.this, Choice.class);
                 startActivity(intent);
             }

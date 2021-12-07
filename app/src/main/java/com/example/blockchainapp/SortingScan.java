@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -37,7 +38,7 @@ public class SortingScan extends AppCompatActivity {
     String[] elements;
 
     {
-        elements = new String[]{"Warszawa, ul. Dolna 1", "Kraków, ul. Fajna 2", "Poznań, Smutna 3", "Gdańsk, Ciekawa 4", "Rzeszów, Markotna 5"};
+        elements = new String[]{"Warszawa, WAW1", "Kraków, KRK2", "Poznań, PZN3", "Gdańsk, GDY4", "Rzeszów, RZE5"};
     }
 
     private Button Scan;
@@ -46,7 +47,7 @@ public class SortingScan extends AppCompatActivity {
     private Button Save;
     private Spinner Spinner;
     private TextView OrganizationShow;
-
+    private TextView tvuidv4label;
     private String Sorting;
 
     @Override
@@ -60,6 +61,9 @@ public class SortingScan extends AppCompatActivity {
         Save = findViewById(R.id.btnSave);
         Spinner = findViewById(R.id.sprChooseNextStep);
         OrganizationShow = findViewById(R.id.tvOrganizationShow);
+        tvuidv4label = findViewById(R.id.tvuidv4label);
+        tvuidv4label.setVisibility(View.INVISIBLE);
+        UUIDv4.setVisibility(View.INVISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, elements);
         Spinner.setAdapter(adapter);
         UUIDv4.setText("");
@@ -117,13 +121,14 @@ public class SortingScan extends AppCompatActivity {
         Choose.setVisibility(View.VISIBLE);
         Save.setVisibility(View.VISIBLE);
         Spinner.setVisibility(View.VISIBLE);
-        Sorting = Spinner.getSelectedItem().toString();
+
+        UUIDv4.setVisibility(View.VISIBLE);
+        tvuidv4label.setVisibility(View.VISIBLE);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Sorting = Spinner.getSelectedItem().toString();
                 SendToBlockchain(Sorting,UUIDv4.getText().toString());
-                Intent intent = new Intent(SortingScan.this, Choice.class);
-                startActivity(intent);
             }
         });
     }
@@ -137,25 +142,25 @@ public class SortingScan extends AppCompatActivity {
         else{
             url = Login.RedURL;
         }
-        //obsługa keepera
-        url = url + "/parcel/keeper?id=" + Id;
+        url = url + "/parcel/sort?id=" + Id;
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         // Request a string response from the provided URL.
-        JsonObjectRequest JsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest JsonObjectRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        JSONObject jsonOb = response;
-                        //dobry kod
+                    public void onResponse(String response) {
+                        //JSONObject jsonOb = response;
+                        Toast.makeText(getApplicationContext(), "Informacje o paczce zostały poprawnie zaktualizowane", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SortingScan.this, Choice.class);
                         startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Intent intent = new Intent(SortingScan.this, Login.class);
+                Toast.makeText(getApplicationContext(), "Informacje o paczce nie zostały poprawnie zaktualizowane. Spróbuj ponownie później", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SortingScan.this, Choice.class);
                 startActivity(intent);
             }
         }){
@@ -172,7 +177,7 @@ public class SortingScan extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("keeper", Keeper);
+                    params.put("keeper_label", Sorting);
                     //params.put("Pass", userPassword);
                     return params;
                 }

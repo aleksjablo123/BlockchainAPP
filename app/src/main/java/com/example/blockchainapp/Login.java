@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
         Test = (TextView) findViewById(R.id.tvTest);
         BlueRadioButton = (RadioButton) findViewById(R.id.rbBlue);
         RedRadioButton = (RadioButton) findViewById(R.id.rbRed);
-
+        Test.setVisibility(View.INVISIBLE);
         Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +96,7 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof AuthFailureError) {
+                        Test.setVisibility(View.VISIBLE);
                         counter--;
                         Test.setTextColor(Color.RED);
                         Test.setText("Błędny login lub hasło");
@@ -105,6 +106,7 @@ public class Login extends AppCompatActivity {
                             Login.setEnabled(false);
                         }
                     } else {
+                        Test.setVisibility(View.VISIBLE);
                         Test.setText("Błąd serwera, spróbuj zalogować się później");
                         Test.setTextColor(Color.RED);
                     }

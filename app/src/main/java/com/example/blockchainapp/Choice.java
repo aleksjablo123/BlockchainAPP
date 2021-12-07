@@ -33,15 +33,23 @@ public class Choice extends AppCompatActivity implements View.OnClickListener{
         Banner = (TextView) findViewById(R.id.tvBanner);
 
         if(Login.Authorization.equals("user1@blue.parcels.local:password")){
+            Carrier.setAlpha(.5f);
+            Carrier.setClickable(false);
             Carrier.setEnabled(false);
         }
         else if(Login.Authorization.equals("user2@blue.parcels.local:password")){
+            Sorting.setAlpha(.5f);
+            Sorting.setClickable(false);
             Sorting.setEnabled(false);
         }
         else if(Login.Authorization.equals("user1@red.parcels.local:password")){
+            Carrier.setAlpha(.5f);
+            Carrier.setClickable(false);
             Carrier.setEnabled(false);
         }
         else if(Login.Authorization.equals("user2@red.parcels.local:password")){
+            Sorting.setAlpha(.5f);
+            Sorting.setClickable(false);
             Sorting.setEnabled(false);
         }
 
