@@ -43,6 +43,7 @@ public class Login extends AppCompatActivity {
     private int counter = 5;
     private RadioButton BlueRadioButton;
     private RadioButton RedRadioButton;
+    private Button Follow;
     public static String Organization;
     public static String Authorization;
     public static String BlueURL="http://192.168.0.6:8080";
@@ -58,10 +59,21 @@ public class Login extends AppCompatActivity {
         Info = (TextView) findViewById(R.id.tvInfo);
         Login = (Button) findViewById(R.id.btnLogin);
         Test = (TextView) findViewById(R.id.tvTest);
+        Follow = (Button) findViewById(R.id.btFollow);
         BlueRadioButton = (RadioButton) findViewById(R.id.rbBlue);
         RedRadioButton = (RadioButton) findViewById(R.id.rbRed);
         Test.setVisibility(View.INVISIBLE);
+        //Follow.setVisibility(View.INVISIBLE);
         Info.setText("Liczba dostępnych prób logowania: " + String.valueOf(counter));
+
+
+        Follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Tracking.class);
+                startActivity(intent);
+            }
+        });
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
